@@ -1,103 +1,366 @@
-import Image from "next/image";
+'use client';
+import { useEffect, useState } from 'react';
+import { oswald } from './fonts';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Linkedin, Mail, Twitter } from 'lucide-react';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [scrollY, setScrollY] = useState(0);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  interface ScrollToSection {
+    (sectionId: string): void;
+  }
+
+  const scrollToSection: ScrollToSection = (sectionId) => {
+    const element: HTMLElement | null = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  return (
+    <>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white text-gray-800">
+        {/* Header */}
+        <header 
+          className={`fixed top-0 w-full z-50 transition-all duration-300 backdrop-blur-lg border-b border-blue-100 ${
+            scrollY > 100 ? 'bg-white/98' : 'bg-white/95'
+          }`}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <nav className="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
+            <div className={`text-xl text-benblue-500 uppercase ${oswald.className}`}>
+              Ben Ogren
+            </div>
+            <ul className="hidden md:flex space-x-8">
+              <li>
+                <button 
+                  onClick={() => scrollToSection('experience')}
+                  className="text-gray-600 hover:text-blue-500 transition-colors duration-300 font-medium relative group"
+                >
+                  Experience
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('projects')}
+                  className="text-gray-600 hover:text-blue-500 transition-colors duration-300 font-medium relative group"
+                >
+                  Projects
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('contact')}
+                  className="text-gray-600 hover:text-blue-500 transition-colors duration-300 font-medium relative group"
+                >
+                  Contact
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </header>
+
+        <section className=" bg-white">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left Column - Text Content */}
+              <div className="space-y-8">
+
+                {/* Main Headline */}
+                <div className="space-y-6">
+                  <div className={`${oswald.className} text-base text-benblue-500 mb-4 uppercase`}>
+                    Product Leader &bull; Tinkerer &bull; Dad
+                  </div>
+                  <h2 className={`text-4xl lg:text-5xl font-normal bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent uppercase leading-tight ${oswald.className}`}>
+                    Hi, I&apos;m Ben!
+                  </h2>
+                </div>
+
+                {/* Description */}
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+                  Thank you for visiting my site! I am a product leader with over 15 years of experience building and scaling 0-to-1 products across enterprise SaaS and emerging technologies. My career has been dedicated to transforming complex technical capabilities into market-ready solutions that drive meaningful business outcomes.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <button 
+                    onClick={() => scrollToSection('experience')}
+                    className="px-8 py-3 bg-gradient-to-r from-benblue-500 to-benblue-600 text-white rounded-full font-semibold uppercase tracking-wide transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-benblue-500/30"
+                  >
+                    View Experience
+                  </button>
+                  <a 
+                    href="mailto:ben@benogren.com"
+                    className="px-8 py-3 bg-benblue-500/10 text-benblue-500 border border-benblue-500/20 rounded-full font-semibold uppercase tracking-wide transition-all duration-300 hover:bg-benblue-500/20 hover:-translate-y-0.5"
+                  >
+                    Get In Touch
+                  </a>
+                </div>
+                
+
+              </div>
+
+              {/* Right Column - Phone Mockups */}
+              <div className="relative flex justify-center lg:justify-end">
+                <div className="relative w-full">
+                    <Image
+                      src="/ben-illustration.png"
+                      alt="ChoresAI App Mockup"
+                      width={750}
+                      height={591}
+                      className='cover object-contain max-w-full h-auto'
+                    />  
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Experience Section */}
+        <section id="experience" className="py-20">
+          <div className="max-w-7xl mx-auto px-5">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent uppercase tracking-wide">
+              Product Leadership Experience
+            </h2>
+            <div className="space-y-12">
+              {/* Workday */}
+              <div className="bg-white/80 backdrop-blur-lg border border-blue-100 rounded-2xl p-8">
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6">
+                  <div>
+                    <h3 className={`${oswald.className} text-xl text-gray-800 mb-2 uppercase`}>Workday</h3>
+                    <p className="text-benblue-500 font-semibold">Director of Product Management</p>
+                    <p className="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">Leading enterprise cloud applications for Fortune 500 companies</p>
+                  </div>
+                  <div className="text-gray-500 font-medium">2018 - 2025</div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className={`${oswald.className} text-base text-benblue-500 mb-4 uppercase`}>Recent Leadership Roles</h4>
+                    <ul className="space-y-2 text-gray-600">
+                      <li>• <strong>Resource Scheduling:</strong> Led ML recommendation systems for workforce optimization for the professional services market</li>
+                      <li>• <strong>Financial Reporting:</strong> Drove 45% efficiency improvements serving all Financial Management customers</li>
+                      <li>• <strong>Content Platform:</strong> Managed global teams across US, Ireland, and Germany for 1.5M+ daily document generation requests</li>
+                      <li>• <strong>Productivity Suite:</strong> Built 3 products from 0-to-1 during tenure</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className={`${oswald.className} text-base text-benblue-500 mb-4 uppercase`}>Leadership Impact</h4>
+                    <ul className="space-y-2 text-gray-600">
+                      <li>• Led cross-functional organizations of <strong>100+ members</strong></li>
+                      <li>• Prepared strategic updates for <strong>C-suite</strong> as part of company-wide strategic initiatives</li>
+                      <li>• Drove go-to-market for new enterprise SKUs</li>
+                      <li>• Validated product-market fit with early adopter customers</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Other Experience */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="bg-white/80 backdrop-blur-lg border border-blue-100 rounded-2xl p-6">
+                  <h3 className={`${oswald.className} text-xl text-gray-800 mb-2 uppercase`}>Spex</h3>
+                  <p className="text-benblue-500 font-semibold text-sm mb-2">VP of Product</p>
+                  <p className="text-gray-600 text-sm mb-4">Enterprise field inspection platform for P&C Insurance</p>
+                  <ul className="text-xs text-gray-600 space-y-1">
+                    <li>• Board-level product strategy and quarterly presentations</li>
+                    <li>• Partnered with Lyft to reduce inspection cycle times by <strong>96%</strong></li>
+                  </ul>
+                </div>
+
+                <div className="bg-white/80 backdrop-blur-lg border border-blue-100 rounded-2xl p-6">
+                  <h3 className={`${oswald.className} text-xl text-gray-800 mb-2 uppercase`}>Ibotta</h3>
+                  <p className="text-benblue-500 font-semibold text-sm mb-2">Senior Product Manager</p>
+                  <p className="text-gray-600 text-sm mb-4">Leading mobile shopping app with millions of users</p>
+                  <ul className="text-xs text-gray-600 space-y-1">
+                    <li>• Owned mobile e-commerce generating <strong>$1.5M daily GMV</strong></li>
+                    <li>• Reduced customer acquisition cost by <strong>38%</strong></li>
+                    <li>• Managed strategic partnerships (Button integration)</li>
+                  </ul>
+                </div>
+
+                <div className="bg-white/80 backdrop-blur-lg border border-blue-100 rounded-2xl p-6">
+                  <h3 className={`${oswald.className} text-xl text-gray-800 mb-2 uppercase`}>Galvanize</h3>
+                  <p className="text-benblue-500 font-semibold text-sm mb-2">Director of Product</p>
+                  <p className="text-gray-600 text-sm mb-4">Technical bootcamp and coworking company</p>
+                  <ul className="text-xs text-gray-600 space-y-1">
+                    <li>• Launched Galvanize Talent achieving <strong>30% of all job placements</strong></li>
+                    <li>• Scaled from first technical hire to full product organization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+              <Link 
+                href="/resume"
+                target='_blank'
+                className="px-8 py-3 bg-benblue-500/10 text-benblue-500 border border-benblue-500/20 rounded-full font-semibold uppercase tracking-wide transition-all duration-300 hover:bg-benblue-500/20 hover:-translate-y-0.5"
+              >
+                Download Full Resume
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" className="py-20 bg-gray-50/50">
+          <div className="max-w-7xl mx-auto px-5">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent uppercase tracking-wide">
+              Recent Projects
+            </h2>
+            <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+              During my sabbatical, I built three AI products from concept to production to deepen my technical understanding of emerging AI capabilities and their product applications.
+            </p>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Project Cards */}
+              {[
+                {
+                  icon: "/citato-icon.png",
+                  title: "Citato",
+                  subtitle: "AI Newsletter Aggregator",
+                  description: "Built an email integration platform that summarizes newsletters in a TikTok-style feed and used vector embeddings for personalized recommendations.",
+                  tags: ["Vector Embeddings", "Flutter", "Next.js", "OpenAI", "Supabase"],
+                  url: "https://www.citato.ai"
+                },
+                {
+                  icon: "/choresai-icon.png",
+                  title: "ChoresAI",
+                  subtitle: "AI Family Management",
+                  description: "Leveraged OpenAI for chore verification and AI-driven age-appropriate task recommendations. Featured in Lenny's Newsletter.",
+                  tags: ["Image Recognition", "Swift", "Claude", "OpenAI", "Supabase"],
+                  url: "https://www.chores-ai.com" 
+                },
+                {
+                  icon: "/candor-icon.png",
+                  title: "Candor",
+                  subtitle: "AI-Powered 360 Feedback",
+                  description: "Built comprehensive feedback platform with conversational AI agents for interactive feedback collection and used OpenAI for sentiment analysis.",
+                  tags: ["Conversational AI", "OpenAI", "ElevenLabs", "Enterprise", "Next.js", "Supabase"],
+                  url: "https://www.candor.so"
+                }
+              ].map((project, index) => (
+                <Link key={index} href={project.url} target="_blank" rel="noopener noreferrer">
+                  <div 
+                    className="group bg-white/80 backdrop-blur-lg border border-blue-100 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:border-blue-300 hover:shadow-xl hover:shadow-blue-500/10"
+                  >
+                    <div className="flex items-center mb-4">
+                      <Image 
+                        src={`${project.icon}`} 
+                        alt={project.title} 
+                        width={50} 
+                        height={50} 
+                        className="rounded-md"
+                      />
+                    <div className='ml-4'>
+                      <h3 className={`${oswald.className} text-base text-benblue-500 uppercase`}>
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-500 text-sm italic">{project.subtitle}</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tags.map((tag, tagIndex) => (
+                      <span 
+                        key={tagIndex}
+                        className="px-3 py-1 bg-benblue-500/10 text-benblue-500 border border-benblue-500/20 rounded-full text-xs font-medium"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                </Link>
+              ))}
+            </div>
+            {/* <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+              <a 
+                href="mailto:ben@benogren.com"
+                className="px-8 py-3 bg-benblue-500/10 text-benblue-500 border border-benblue-500/20 rounded-full font-semibold uppercase tracking-wide transition-all duration-300 hover:bg-benblue-500/20 hover:-translate-y-0.5"
+              >
+                Read More
+              </a>
+            </div> */}
+          </div>
+        </section>
+       
+
+        {/* Contact Section */}
+        <section id="contact" className="py-20 bg-white/50 border-t border-blue-100">
+          <div className="max-w-7xl mx-auto px-5 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent uppercase tracking-wide">
+              Get In Touch
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+              Open to senior product leadership opportunities where I can drive strategic initiatives, build high-performing teams, and transform emerging technologies into scalable products.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {[
+                { icon: <Mail className="inline-block ml-1" />, text: "ben@ogren.me", href: "mailto:ben@benogren.com" },
+                { icon: <Linkedin className="inline-block ml-1" />, text: "LinkedIn", href: "https://www.linkedin.com/in/benogren" },
+                { icon: <Twitter className="inline-block ml-1" />, text: "Text Me", href: "https://x.com/benogren" }
+              ].map((contact, index) => (
+                <a 
+                  key={index}
+                  href={contact.href}
+                  className="flex items-center gap-2 text-gray-500 hover:text-blue-500 transition-colors duration-300"
+                  {
+                    ...(contact.href.includes('linkedin.com')
+                      ? { target: '_blank', rel: 'noopener noreferrer' }
+                      : contact.href.includes('x.com')
+                        ? { target: '_blank', rel: 'noopener noreferrer' }
+                        : {})
+                  }
+                >
+                  <span className="text-base">
+                    {contact.icon}
+                  </span>
+                  {/* <span className="font-medium">{contact.text}</span> */}
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <style jsx global>{`
+        .font-oswald {
+          font-family: 'Oswald', sans-serif;
+        }
+        
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+          50% { transform: translateY(-20px) rotate(5deg); opacity: 0.6; }
+        }
+        
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-float-delayed {
+          animation: float 6s ease-in-out infinite 2s;
+        }
+        
+        .animate-float-delayed-2 {
+          animation: float 6s ease-in-out infinite 4s;
+        }
+        
+        .bg-gradient-radial {
+          background: radial-gradient(circle at 30% 50%, rgba(74, 144, 226, 0.05) 0%, transparent 50%);
+        }
+      `}</style>
+    </>
   );
 }
