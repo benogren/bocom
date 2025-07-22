@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Ben Ogren - Product Leader',
   description: 'Strategic product leader with 15+ years building enterprise SaaS platforms and emerging technology products',
   keywords: ['product leader', 'product management', 'SaaS', 'AI', 'emerging technology', 'enterprise software'],
-  authors: [{ name: 'Ben Ogren', url: 'https://benogren.com' }],
+  authors: [{ name: 'Ben Ogren', url: 'https://www.benogren.com' }],
   creator: 'Ben Ogren',
   publisher: 'Ben Ogren',
   robots: {
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     images: [
       {
-        url: 'https://chores-ai-api.vercel.app/og-image.png',
+        url: 'https://www.benogren.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Ben Ogren - Product Leader',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Ben Ogren - Product Leader',
     description: 'Strategic product leader with 15+ years building enterprise SaaS platforms and emerging technology products',
-    images: ['https://chores-ai-api.vercel.app/x-og-image.png'],
+    images: ['https://www.benogren.com/og-image.png'],
   },
 }
 

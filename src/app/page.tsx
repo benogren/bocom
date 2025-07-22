@@ -98,12 +98,12 @@ export default function Home() {
                   >
                     View Experience
                   </button>
-                  <a 
-                    href="mailto:ben@benogren.com"
+                  <button 
+                    onClick={() => scrollToSection('contact')}
                     className="px-8 py-3 bg-benblue-500/10 text-benblue-500 border border-benblue-500/20 rounded-full font-semibold uppercase tracking-wide transition-all duration-300 hover:bg-benblue-500/20 hover:-translate-y-0.5"
                   >
                     Get In Touch
-                  </a>
+                  </button>
                 </div>
                 
 
