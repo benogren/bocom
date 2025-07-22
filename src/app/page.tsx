@@ -70,8 +70,8 @@ export default function Home() {
           </nav>
         </header>
 
-        <section className=" bg-white">
-          <div className="container mx-auto max-w-6xl">
+        <section className="bg-white">
+          <div className="container mx-auto px-18 pt-8">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left Column - Text Content */}
               <div className="space-y-8">
@@ -114,7 +114,7 @@ export default function Home() {
                 <div className="relative w-full">
                     <Image
                       src="/ben-illustration.png"
-                      alt="ChoresAI App Mockup"
+                      alt="Ben Ogren"
                       width={750}
                       height={591}
                       className='cover object-contain max-w-full h-auto'
