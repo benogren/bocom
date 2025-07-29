@@ -1,9 +1,9 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { oswald } from '../fonts';
+import { oswald } from '../../fonts';
 
-export default function Header() {
+export default function BlogHeader() {
     const [scrollY, setScrollY] = useState(0);
     
     useEffect(() => {
@@ -11,17 +11,6 @@ export default function Header() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
-
-    interface ScrollToSection {
-        (sectionId: string): void;
-    }
-
-    const scrollToSection: ScrollToSection = (sectionId) => {
-        const element: HTMLElement | null = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    };
 
     return (
         <header 
@@ -38,22 +27,22 @@ export default function Header() {
                 </Link>
                 <ul className="hidden md:flex space-x-8">
                     <li>
-                        <button 
-                            onClick={() => scrollToSection('experience')}
+                        <Link 
+                            href="/#experience"
                             className="text-gray-600 hover:text-blue-500 transition-colors duration-300 font-medium relative group"
                         >
                             Experience
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                        </button>
+                        </Link>
                     </li>
                     <li>
-                        <button 
-                            onClick={() => scrollToSection('projects')}
+                        <Link 
+                            href="/#projects"
                             className="text-gray-600 hover:text-blue-500 transition-colors duration-300 font-medium relative group"
                         >
                             Projects
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                        </button>
+                        </Link>
                     </li>
                     <li>
                         <Link 
@@ -65,13 +54,13 @@ export default function Header() {
                         </Link>
                     </li>
                     <li>
-                        <button 
-                            onClick={() => scrollToSection('contact')}
+                        <Link
+                            href="/#contact"
                             className="text-gray-600 hover:text-blue-500 transition-colors duration-300 font-medium relative group"
                         >
-                            Contact
+                            Contact 
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                        </button>
+                        </Link>
                     </li>
                 </ul>
             </nav>

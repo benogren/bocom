@@ -76,14 +76,14 @@ export default function Projects() {
                 </Link>
               ))}
             </div>
-            {/* <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
-              <a 
-                href="mailto:ben@benogren.com"
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+              <Link 
+                href="/blog/tag/projects"
                 className="px-8 py-3 bg-benblue-500/10 text-benblue-500 border border-benblue-500/20 rounded-full font-semibold uppercase tracking-wide transition-all duration-300 hover:bg-benblue-500/20 hover:-translate-y-0.5"
               >
                 Read More
-              </a>
-            </div> */}
+              </Link>
+            </div>
           </div>
         </section>
     );

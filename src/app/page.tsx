@@ -12,6 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
+    console.log('Initial scrollY:', scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -35,7 +36,7 @@ export default function Home() {
         
 
         <section className="bg-white">
-          <div className="container mx-auto px-18 pt-8">
+          <div className="container max-w-7xl mx-auto px-8 pt-8">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left Column - Text Content */}
               <div className="space-y-8">
