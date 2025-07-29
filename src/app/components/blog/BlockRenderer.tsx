@@ -3,9 +3,22 @@ import { NotionBlock, RichTextItem } from '@/types/notion';
 import { processRichText } from '@/lib/notion-utils';
 import Image from 'next/image';
 import RichBookmark from './RichBookmark';
+import TweetEmbed from './TweetEmbed';
 
 interface BlockRendererProps {
   block: NotionBlock;
+}
+
+// Helper function to extract tweet ID from Twitter/X URLs
+function extractTweetId(url: string): string | null {
+  const tweetRegex = /(?:twitter\.com|x\.com)\/\w+\/status\/(\d+)/;
+  const match = url.match(tweetRegex);
+  return match ? match[1] : null;
+}
+
+// Helper function to check if URL is a Twitter/X URL
+function isTwitterUrl(url: string): boolean {
+  return url.includes('twitter.com/') || url.includes('x.com/');
 }
 
 export default function BlockRenderer({ block }: BlockRendererProps) {
@@ -192,17 +205,83 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
         </div>
       );
 
+    case 'tweet':
+      const tweetUrl = block.tweet?.url;
+      
+      if (!tweetUrl) return null;
+      
+      return <TweetEmbed tweetUrl={tweetUrl} />;
+
     case 'bookmark':
       const bookmarkUrl = block.bookmark?.url;
       const bookmarkCaption = block.bookmark?.caption?.[0]?.plain_text;
       
       if (!bookmarkUrl) return null;
       
+      // Handle Twitter/X embeds
+      if (isTwitterUrl(bookmarkUrl)) {
+        return <TweetEmbed tweetUrl={bookmarkUrl} />;
+      }
+      
+      // Fallback to regular bookmark
       return (
         <RichBookmark 
           url={bookmarkUrl} 
           caption={bookmarkCaption}
         />
+      );
+
+    case 'embed':
+      // Type guard to ensure embed is an object with a url property
+      const embedUrl =
+        typeof block.embed === 'object' &&
+        block.embed !== null &&
+        'url' in block.embed &&
+        typeof (block.embed as { url?: string }).url === 'string'
+          ? (block.embed as { url: string }).url
+          : undefined;
+      
+      if (!embedUrl) return null;
+      
+      // Handle Twitter/X embeds
+      if (isTwitterUrl(embedUrl)) {
+        return <TweetEmbed tweetUrl={embedUrl} />;
+      }
+      
+      // Handle other embeds (YouTube, etc.)
+      if (embedUrl.includes('youtube.com') || embedUrl.includes('youtu.be')) {
+        const videoId = embedUrl.includes('youtu.be') 
+          ? embedUrl.split('youtu.be/')[1]?.split('?')[0]
+          : embedUrl.split('v=')[1]?.split('&')[0];
+        
+        if (videoId) {
+          return (
+            <div className="my-8">
+              <div className="relative aspect-video rounded-lg overflow-hidden">
+                <iframe
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  title="YouTube video"
+                  className="absolute inset-0 w-full h-full"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          );
+        }
+      }
+      
+      // Generic iframe embed for other services
+      return (
+        <div className="my-8">
+          <div className="relative aspect-video rounded-lg overflow-hidden">
+            <iframe
+              src={embedUrl}
+              title="Embedded content"
+              className="absolute inset-0 w-full h-full border-0"
+              allowFullScreen
+            />
+          </div>
+        </div>
       );
 
     case 'table':

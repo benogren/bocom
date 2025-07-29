@@ -50,6 +50,13 @@ export interface NotionBlock {
   last_edited_time?: string;
   children?: NotionBlock[];
 
+  tweet?: {
+    url: string;
+    // Notion might include additional metadata
+    id?: string;
+    caption?: RichTextItem[];
+  };
+
   // Block-specific properties (optional)
   paragraph?: {
     rich_text: RichTextItem[];
