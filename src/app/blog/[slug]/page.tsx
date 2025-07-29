@@ -7,11 +7,56 @@ import { getBlogPost, getBlogPosts } from '@/lib/notion';
 import BlockRenderer from '../../components/blog/BlockRenderer';
 import BlogHeader from '@/app/components/blog/BlogHeader';
 import BlogFooter from '@/app/components/blog/BlogFooter';
+import type { Metadata } from 'next';
 
 interface BlogPostPageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+// Generate dynamic metadata for each blog post
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
+
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+      description: 'The requested blog post could not be found.',
+    };
+  }
+
+  return {
+    title: `Ben Ogren | ${post.title}`,
+    description: post.description || `Read ${post.title} on our blog`,
+    openGraph: {
+      title: `Ben Ogren | ${post.title}`,
+      description: post.description || `Read ${post.title} on our blog`,
+      type: 'article',
+      publishedTime: post.publishedDate || post.createdTime,
+      authors: ['Your Name'], // Replace with actual author if available
+      tags: post.tags.map(tag => tag.name),
+      images: post.coverImage ? [
+        {
+          url: post.coverImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        }
+      ] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description || `Read ${post.title} on our blog`,
+      images: post.coverImage ? [post.coverImage] : [],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
