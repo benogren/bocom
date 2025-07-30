@@ -29,13 +29,13 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   return {
     title: `Ben Ogren | ${post.title}`,
-    description: post.description || `Read ${post.title} on our blog`,
+    description: post.description || `Read ${post.title} on my blog`,
     openGraph: {
       title: `Ben Ogren | ${post.title}`,
-      description: post.description || `Read ${post.title} on our blog`,
+      description: post.description || `Read ${post.title} on my blog`,
       type: 'article',
       publishedTime: post.publishedDate || post.createdTime,
-      authors: ['Your Name'], // Replace with actual author if available
+      authors: ['Ben Ogren'], // Replace with actual author if available
       tags: post.tags.map(tag => tag.name),
       images: post.coverImage ? [
         {
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     twitter: {
       card: 'summary_large_image',
       title: post.title,
-      description: post.description || `Read ${post.title} on our blog`,
+      description: post.description || `Read ${post.title} on my blog`,
       images: post.coverImage ? [post.coverImage] : [],
     },
     robots: {
