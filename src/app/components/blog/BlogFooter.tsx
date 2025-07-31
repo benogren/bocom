@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Linkedin, RssIcon, Twitter } from 'lucide-react';
+import { Github, Linkedin, RssIcon, Twitter } from 'lucide-react';
 
 export default function BlogFooter() {
     return (
@@ -15,6 +15,9 @@ export default function BlogFooter() {
                     </Link>
                     <Link href="https://www.linkedin.com/in/benogren/" target='_blank'>
                         <Linkedin className="h-6 w-6 text-gray-400 hover:text-benblue-600 transition-colors" />
+                    </Link>
+                    <Link href="https://github.com/benogren" target='_blank'>
+                        <Github className="h-6 w-6 text-gray-400 hover:text-benblue-600 transition-colors" />
                     </Link>
                     <Link href="/blog/rss.xml" target='_blank'>
                         <RssIcon className="h-6 w-6 text-gray-400 hover:text-benblue-600 transition-colors" />
