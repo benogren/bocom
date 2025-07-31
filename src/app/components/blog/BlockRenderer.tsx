@@ -122,20 +122,21 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
       );
 
     case 'code':
-      const codeContent = block.code?.rich_text?.[0]?.plain_text || '';
-      const language = block.code?.language || 'text';
-      return (
-        <div className="my-6">
-          {language !== 'text' && (
-            <div className="bg-gray-800 text-gray-300 px-4 py-2 text-sm rounded-t-lg border-b border-gray-600">
-              {language}
-            </div>
-          )}
-          <pre className={`bg-gray-900 text-gray-100 p-4 overflow-x-auto ${language !== 'text' ? 'rounded-b-lg' : 'rounded-lg'}`}>
-            <code>{codeContent}</code>
-          </pre>
+  // Fix: Combine all rich text items instead of just taking the first one
+  const codeContent = block.code?.rich_text?.map(item => item.plain_text).join('') || '';
+  const language = block.code?.language || 'text';
+  return (
+    <div className="my-6">
+      {language !== 'text' && (
+        <div className="bg-gray-800 text-gray-300 px-4 py-2 text-sm rounded-t-lg border-b border-gray-600">
+          {language}
         </div>
-      );
+      )}
+      <pre className={`bg-gray-900 text-gray-100 p-4 overflow-x-auto ${language !== 'text' ? 'rounded-b-lg' : 'rounded-lg'}`}>
+        <code>{codeContent}</code>
+      </pre>
+    </div>
+  );
 
     case 'image':
       const imageUrl = block.image?.type === 'external' 
