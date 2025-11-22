@@ -36,6 +36,9 @@ export default async function TagPage({ params }: TagPageProps) {
   return (
     <>
       <BlogHeader />
+      <div className="bg-white/50 backdrop-blur-lg border-b border-blue-100 p-4 text-center pt-20">
+        <p><strong>Note:</strong> I have moved my blog to <a href="https://benogren.substack.com/" className="text-benblue-500 underline">Substack</a>. You can find all my latest posts there.</p>
+      </div>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
         <div className="container max-w-7xl mx-auto px-4 py-16">
           <div className="pt-20">
