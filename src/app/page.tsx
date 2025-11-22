@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { oswald } from './fonts';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Linkedin, Mail, Twitter } from 'lucide-react';
+import { Github, Linkedin, Mail, Rss, Twitter } from 'lucide-react';
 import Header from './components/Header';
 import Projects from './components/Projects';
 
@@ -193,7 +193,8 @@ export default function Home() {
               {[
                 { icon: <Mail className="inline-block ml-1" />, text: "ben@ogren.me", href: "mailto:ben@benogren.com" },
                 { icon: <Linkedin className="inline-block ml-1" />, text: "LinkedIn", href: "https://www.linkedin.com/in/benogren" },
-                { icon: <Twitter className="inline-block ml-1" />, text: "Text Me", href: "https://x.com/benogren" }
+                { icon: <Twitter className="inline-block ml-1" />, text: "Text Me", href: "https://x.com/benogren" },
+                { icon: <Github className="inline-block ml-1" />, text: "GitHub", href: "https://github.com/benogren" }
               ].map((contact, index) => (
                 <a 
                   key={index}
@@ -203,6 +204,8 @@ export default function Home() {
                     ...(contact.href.includes('linkedin.com')
                       ? { target: '_blank', rel: 'noopener noreferrer' }
                       : contact.href.includes('x.com')
+                        ? { target: '_blank', rel: 'noopener noreferrer' }
+                      : contact.href.includes('github.com')
                         ? { target: '_blank', rel: 'noopener noreferrer' }
                         : {})
                   }
@@ -214,8 +217,10 @@ export default function Home() {
                 </a>
               ))}
             </div>
+            <iframe src="https://benogren.substack.com/embed" width="480" height="150" style={{ margin: '0 auto' }} frameBorder="0" scrolling="no"></iframe>
           </div>
         </section>
+
       </div>
 
       <style jsx global>{`

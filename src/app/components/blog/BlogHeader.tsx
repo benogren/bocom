@@ -46,7 +46,8 @@ export default function BlogHeader() {
                     </li>
                     <li>
                         <Link 
-                            href="/blog"
+                            href="https://benogren.substack.com/"
+                            target="_blank"
                             className="text-gray-600 hover:text-blue-500 transition-colors duration-300 font-medium relative group"
                         >
                             Blog

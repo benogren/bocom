@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 
 // SERVER COMPONENT - Only handles data fetching
 export default async function BlogPage() {
+
   console.log('Environment check:', {
     hasNotionKey: !!process.env.NOTION_API_KEY,
     hasDbId: !!process.env.NOTION_BLOG_DATABASE_ID,
