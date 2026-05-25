@@ -10,7 +10,7 @@ export default function Projects() {
               Recent Projects
             </h2>
             <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-              During my sabbatical, I set out to build AI products from concept to production to deepen my technical understanding of emerging AI capabilities and their product applications.
+              I learn best by doing. Reading about new AI capabilities only gets you so far &ndash; the only way I&apos;ve found to actually understand them is to build with them. So here&apos;s what I&apos;ve been tinkering with.
             </p>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Project Cards */}
@@ -19,7 +19,7 @@ export default function Projects() {
                   icon: "/citato-icon.png",
                   title: "Citato",
                   subtitle: "AI Newsletter Aggregator",
-                  description: "Built an email integration platform that summarizes newsletters in a TikTok-style feed and used vector embeddings for personalized recommendations.",
+                  description: "What if your newsletter inbox felt like TikTok? I built an email aggregator that summarizes newsletters into a swipeable feed, with vector embeddings doing the personalization heavy lift to keep it relevant.",
                   tags: ["Vector Embeddings", "Flutter", "Next.js", "OpenAI", "Supabase"],
                   url: "https://www.citato.ai"
                 },
@@ -27,22 +27,22 @@ export default function Projects() {
                   icon: "/choresai-icon.png",
                   title: "ChoresAI",
                   subtitle: "AI Family Management",
-                  description: "Leveraged OpenAI for chore verification and AI-driven age-appropriate task recommendations. Featured in Lenny's Newsletter.",
+                  description: "My kids fight me on chores – so I built an app where AI verifies the chore actually got done (photo check) and suggests age-appropriate tasks. Got picked up in Lenny's Newsletter, which was a fun surprise.",
                   tags: ["Image Recognition", "Swift", "Claude", "OpenAI", "Supabase"],
-                  url: "https://www.chores-ai.com" 
+                  url: "https://www.chores-ai.com"
                 },
                 {
                   icon: "/candor-icon.png",
                   title: "Candor",
                   subtitle: "AI-Powered 360 Feedback",
-                  description: "Built comprehensive feedback platform with conversational AI agents for interactive feedback collection and used OpenAI for sentiment analysis.",
+                  description: "Most 360 feedback is a forms-filling slog. Candor uses conversational AI agents to actually interview people, then runs sentiment analysis across the responses – built end-to-end with enterprise-grade auth.",
                   tags: ["Conversational AI", "OpenAI", "ElevenLabs", "Enterprise", "Next.js", "Supabase"],
                   url: "https://www.candor.so"
                 }
               ].map((project, index) => (
-                <Link key={index} href={project.url} target="_blank" rel="noopener noreferrer">
-                  <div 
-                    className="group bg-white/80 backdrop-blur-lg border border-blue-100 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:border-blue-300 hover:shadow-xl hover:shadow-blue-500/10"
+                <Link key={index} href={project.url} target="_blank" rel="noopener noreferrer" className="block h-full">
+                  <div
+                    className="group h-full flex flex-col bg-white/80 backdrop-blur-lg border border-blue-100 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:border-blue-300 hover:shadow-xl hover:shadow-blue-500/10"
                   >
                     <div className="flex items-center mb-4">
                       <Image 
@@ -59,7 +59,7 @@ export default function Projects() {
                       <p className="text-gray-500 text-sm italic">{project.subtitle}</p>
                     </div>
                   </div>
-                  <p className="text-gray-600 mb-6 leading-relaxed">
+                  <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-6">

@@ -53,7 +53,7 @@ export default function Home() {
 
                 {/* Description */}
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
-                  Thank you for visiting my site! I am a product leader with over 15 years of experience building and scaling 0-to-1 products across enterprise SaaS and emerging technologies. My career has been dedicated to transforming complex technical capabilities into market-ready solutions that drive meaningful business outcomes.
+                  Hey, thanks for stopping by! I&apos;m a senior product leader &ndash; I build and scale 0-to-1 products in enterprise SaaS and, more recently, AI. The question I keep coming back to: is there a there there? Most of my career has been spent turning messy, technical capabilities into things people will actually use (... and pay for!) Right now I&apos;m tinkering with a lot of AI products.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -93,75 +93,47 @@ export default function Home() {
         {/* Experience Section */}
         <section id="experience" className="py-20">
           <div className="max-w-7xl mx-auto px-5">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent uppercase tracking-wide">
-              Product Leadership Experience
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent uppercase tracking-wide">
+              Where I&apos;ve Had Impact
             </h2>
-            <div className="space-y-12">
-              {/* Workday */}
-              <div className="bg-white/80 backdrop-blur-lg border border-blue-100 rounded-2xl p-8">
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6">
-                  <div>
-                    <h3 className={`${oswald.className} text-xl text-gray-800 mb-2 uppercase`}>Workday</h3>
-                    <p className="text-benblue-500 font-semibold">Director of Product Management</p>
-                    <p className="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">Leading enterprise cloud applications for Fortune 500 companies</p>
-                  </div>
-                  <div className="text-gray-500 font-medium">2018 - 2025</div>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div>
-                    <h4 className={`${oswald.className} text-base text-benblue-500 mb-4 uppercase`}>Recent Leadership Roles</h4>
-                    <ul className="space-y-2 text-gray-600">
-                      <li>• <strong>Resource Scheduling:</strong> Led ML recommendation systems for workforce optimization for the professional services market</li>
-                      <li>• <strong>Financial Reporting:</strong> Drove 45% efficiency improvements serving all Financial Management customers</li>
-                      <li>• <strong>Content Platform:</strong> Managed global teams across US, Ireland, and Germany for 1.5M+ daily document generation requests</li>
-                      <li>• <strong>Productivity Suite:</strong> Built 3 products from 0-to-1 during tenure</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className={`${oswald.className} text-base text-benblue-500 mb-4 uppercase`}>Leadership Impact</h4>
-                    <ul className="space-y-2 text-gray-600">
-                      <li>• Led cross-functional organizations of <strong>100+ members</strong></li>
-                      <li>• Prepared strategic updates for <strong>C-suite</strong> as part of company-wide strategic initiatives</li>
-                      <li>• Drove go-to-market for new enterprise SKUs</li>
-                      <li>• Validated product-market fit with early adopter customers</li>
-                    </ul>
-                  </div>
-                </div>
+            <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+              Three things I&apos;ve gotten good at &ndash; and the throughline across every product I&apos;ve shipped.
+            </p>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* AI Product Leadership */}
+              <div className="bg-white/80 backdrop-blur-lg border border-blue-100 rounded-2xl p-6">
+                <h3 className={`${oswald.className} text-xl text-gray-800 mb-2 uppercase`}>AI Product Leadership</h3>
+                <p className="text-gray-600 text-sm italic mb-4">Building agentic AI products end-to-end &ndash; from architecture through enterprise rollout.</p>
+                <ul className="text-xs text-gray-600 space-y-2">
+                  <li>• Shipped an agentic AI financial product &ndash; a multi-agent system for fraud and anomaly detection, validated with enterprise customers through an Early Adopter program</li>
+                  <li>• Built the evals framework underpinning agent quality &ndash; multi-model LLM-as-judge consensus (Claude / Gemini / OpenAI) for production scoring</li>
+                  <li>• Founded Candor, an AI-powered feedback platform &ndash; recruiting enterprise pilot customers and an Advisory Board of senior people leaders</li>
+                  <li>• Featured in Lenny&apos;s Newsletter for a consumer AI product I built solo</li>
+                </ul>
               </div>
 
-              {/* Other Experience */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div className="bg-white/80 backdrop-blur-lg border border-blue-100 rounded-2xl p-6">
-                  <h3 className={`${oswald.className} text-xl text-gray-800 mb-2 uppercase`}>Spex</h3>
-                  <p className="text-benblue-500 font-semibold text-sm mb-2">VP of Product</p>
-                  <p className="text-gray-600 text-sm mb-4">Enterprise field inspection platform for P&C Insurance</p>
-                  <ul className="text-xs text-gray-600 space-y-1">
-                    <li>• Board-level product strategy and quarterly presentations</li>
-                    <li>• Partnered with Lyft to reduce inspection cycle times by <strong>96%</strong></li>
-                  </ul>
-                </div>
+              {/* 0-to-1 Product Building */}
+              <div className="bg-white/80 backdrop-blur-lg border border-blue-100 rounded-2xl p-6">
+                <h3 className={`${oswald.className} text-xl text-gray-800 mb-2 uppercase`}>0-to-1 Product Building</h3>
+                <p className="text-gray-600 text-sm italic mb-4">Launching new products from concept to GA, in enterprise SaaS and consumer.</p>
+                <ul className="text-xs text-gray-600 space-y-2">
+                  <li>• Built and launched products from 0-to-1 across enterprise SaaS (Workday, Galvanize) and a steady stream of independent side projects &ndash; some AI, some not</li>
+                  <li>• Ran early adopter programs across multiple 0-to-1 products &ndash; partnering with enterprise customers to validate product-market fit and figure out what to build, ship, and cut</li>
+                  <li>• Built strategic partnerships with enterprise customers to unlock new revenue</li>
+                  <li>• Designed AI/ML recommendation systems matching workforce supply to demand based on skills and performance signals</li>
+                </ul>
+              </div>
 
-                <div className="bg-white/80 backdrop-blur-lg border border-blue-100 rounded-2xl p-6">
-                  <h3 className={`${oswald.className} text-xl text-gray-800 mb-2 uppercase`}>Ibotta</h3>
-                  <p className="text-benblue-500 font-semibold text-sm mb-2">Senior Product Manager</p>
-                  <p className="text-gray-600 text-sm mb-4">Leading mobile shopping app with millions of users</p>
-                  <ul className="text-xs text-gray-600 space-y-1">
-                    <li>• Owned mobile e-commerce generating <strong>$1.5M daily GMV</strong></li>
-                    <li>• Reduced customer acquisition cost by <strong>38%</strong></li>
-                    <li>• Managed strategic partnerships (Button integration)</li>
-                  </ul>
-                </div>
-
-                <div className="bg-white/80 backdrop-blur-lg border border-blue-100 rounded-2xl p-6">
-                  <h3 className={`${oswald.className} text-xl text-gray-800 mb-2 uppercase`}>Galvanize</h3>
-                  <p className="text-benblue-500 font-semibold text-sm mb-2">Director of Product</p>
-                  <p className="text-gray-600 text-sm mb-4">Technical bootcamp and coworking company</p>
-                  <ul className="text-xs text-gray-600 space-y-1">
-                    <li>• Launched Galvanize Talent achieving <strong>30% of all job placements</strong></li>
-                    <li>• Scaled from first technical hire to full product organization</li>
-                  </ul>
-                </div>
+              {/* Enterprise Platform Scale */}
+              <div className="bg-white/80 backdrop-blur-lg border border-blue-100 rounded-2xl p-6">
+                <h3 className={`${oswald.className} text-xl text-gray-800 mb-2 uppercase`}>Enterprise Platform Scale</h3>
+                <p className="text-gray-600 text-sm italic mb-4">Running large cross-functional orgs and shipping at enterprise scale.</p>
+                <ul className="text-xs text-gray-600 space-y-2">
+                  <li>• Led large cross-functional orgs spanning engineering, product, design, data, and ML &ndash; distributed across multiple global locations</li>
+                  <li>• Scaled enterprise financial reporting to serve thousands of customers and billions of journal lines annually</li>
+                  <li>• Drove performance and scale improvements that turned slow batch reporting into real-time analytics for enterprise customers</li>
+                  <li>• Repeatedly exceeded company-level OKRs through customer-facing UX redesigns that meaningfully cut the time customers spent on routine workflows</li>
+                </ul>
               </div>
             </div>
 
@@ -187,7 +159,7 @@ export default function Home() {
               Get In Touch
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
-              Open to senior product leadership, consulting, or fractional product opportunities where I can drive strategic initiatives, build high-performing teams, and transform emerging technologies into scalable products.
+              So &ndash; what now? I&apos;m looking for the next thing, and I&apos;m open about what that could be: a senior product role, fractional work, or consulting. Where I tend to do my best work is somewhere that lives at the intersection of an interesting technical problem and real customer pain &ndash; usually with a team that&apos;s still figuring out their steel thread. If that sounds like you, let me know &ndash; I&apos;d love to chat!
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               {[
